@@ -1,0 +1,55 @@
+erDiagram
+  HechoIncidente {
+    bigint sk_incidente PK
+    int nk_incidente
+    int sk_tiempo
+    int sk_categoria
+    int sk_ubicacion
+    int sk_estado
+    int sk_usuario
+    int num_comentarios
+    tinyint has_imagen
+  }
+
+  DimTiempo {
+    int sk_tiempo PK
+    date fecha_calendario
+    smallint anio
+    tinyint trimestre
+    tinyint mes
+    tinyint dia
+    tinyint dia_semana
+    varchar nombre_mes
+  }
+
+  DimCategoria {
+    int sk_categoria PK
+    int nk_categoria
+    varchar nombre_categoria
+  }
+
+  DimUbicacion {
+    int sk_ubicacion PK
+    float latitud
+    float longitud
+    varchar municipio
+    varchar colonia
+  }
+
+  DimEstadoIncidente {
+    int sk_estado PK
+    varchar estado
+  }
+
+  DimUsuario {
+    int sk_usuario PK
+    int nk_usuario
+    varchar nombre
+    varchar rol
+  }
+
+  HechoIncidente }o--|| DimTiempo          : sk_tiempo
+  HechoIncidente }o--|| DimCategoria       : sk_categoria
+  HechoIncidente }o--|| DimUbicacion       : sk_ubicacion
+  HechoIncidente }o--|| DimEstadoIncidente : sk_estado
+  HechoIncidente }o--|| DimUsuario         : sk_usuario
